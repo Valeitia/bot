@@ -9,7 +9,7 @@ import {
 } from "discord.js";
 import glob from "glob";
 import { promisify } from "util";
-import axios from 'axios';
+import axios from "axios";
 
 import { Command } from "../interfaces/command";
 import { Event } from "../interfaces/event";
@@ -69,17 +69,17 @@ class Bot extends Client {
 
   public async get(endpoint: string): Promise<any> {
     return await axios.get(`${this.config.api_link}/${endpoint}`, {
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-      headers: {"content-type": "application/json"}
+      xsrfCookieName: "XSRF-TOKEN",
+      xsrfHeaderName: "X-XSRF-TOKEN",
+      headers: { "content-type": "application/json" },
     });
   }
 
   public async post(endpoint: string, data: any): Promise<any> {
     return await axios.post(`${this.config.api_link}/${endpoint}`, data, {
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-      headers: {"content-type": "application/json"}
+      xsrfCookieName: "XSRF-TOKEN",
+      xsrfHeaderName: "X-XSRF-TOKEN",
+      headers: { "content-type": "application/json" },
     });
   }
 }

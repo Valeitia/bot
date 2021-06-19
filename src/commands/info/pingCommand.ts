@@ -1,11 +1,22 @@
-import { RunFunction } from '../../interfaces/command';
+import { RunFunction } from "../../interfaces/command";
 
-import { Message } from 'discord.js';
+import { Message } from "discord.js";
 
-export const run: RunFunction = async(client, message) => {
-    const msg: Message = await message.channel.send(client.embed({ description: 'Pinging..' }, message));
+export const run: RunFunction = async (client, message) => {
+  const msg: Message = await message.channel.send(
+    client.embed({ description: "Pinging.." }, message)
+  );
 
-    await msg.edit(client.embed({ description: `⏲️ WS: ${client.ws.ping}ms\n\n⏲️ MSG: ${msg.createdTimestamp - message.createdTimestamp}ms`}, message));
-}
+  await msg.edit(
+    client.embed(
+      {
+        description: `⏲️ WS: ${client.ws.ping}ms\n\n⏲️ MSG: ${
+          msg.createdTimestamp - message.createdTimestamp
+        }ms`,
+      },
+      message
+    )
+  );
+};
 
-export const name: string = 'ping';
+export const name: string = "ping";
