@@ -18,9 +18,13 @@
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
+    "axios": "^0.21.1",
     "consola": "^2.15.3",
     "discord.js": "^12.5.3",
     "glob": "^7.1.7",
+    "got": "^11.8.2",
+    "https": "^1.0.0",
+    "ts-node": "^10.0.0",
     "util": "^0.12.4",
     "yarn": "^1.22.10"
   }
