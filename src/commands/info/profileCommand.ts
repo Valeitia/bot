@@ -6,7 +6,7 @@ export const run: RunFunction = async (client, message) => {
   const msg: Message = await message.channel.send(
     client.embed({ description: "Fetching User Profile.." }, message)
   );
-  
+
   const data = {
     discord_id: message.author.id,
   };
@@ -14,14 +14,13 @@ export const run: RunFunction = async (client, message) => {
   await client
     .post("api/user/profile", data)
     .then((res) => {
-        console.log(res.data);
         msg.edit(
             client.embed(
               {
                 fields: [
                     {
                         name: 'Info',
-                        value: `Level ${res.data.data.level} | ${res.data.data.exp} EXP \n
+                        value: `Level ${res.data.data.level} | ${res.data.data.exp} / ${25 * (res.data.data.level + 1) * (res.data.data.level + 1) - 25 * (res.data.data.level + 1)} EXP \n
                                 💰 ${res.data.data.gold} Gold \n
                                 ❤️ ${res.data.data.health} / 100 Health \n
                                 ⚡ ${res.data.data.energy} / 100 Energy
@@ -31,7 +30,7 @@ export const run: RunFunction = async (client, message) => {
                     {
                         name: 'Combat Stats',
                         value: `💪 ${res.data.data.strength} Strength
-                                ✨ ${res.data.data.intelligence} Intelligence
+                                🧠 ${res.data.data.intelligence} Intelligence
                                 🏃 ${res.data.data.dexterity} Dexterity
                                 `,
                         inline: true,
