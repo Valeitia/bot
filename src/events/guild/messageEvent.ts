@@ -10,7 +10,7 @@ export const run: RunFunction = async (client, message: Message) => {
   )
     return;
 
-  const args: string[] = message.content.slice("!".length).trim().split(/ + /g);
+  const args: string[] = message.content.slice("!".length).trim().split(/ +/g);
 
   const cmd: string = args.shift();
 

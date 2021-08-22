@@ -9,6 +9,14 @@ export const run: RunFunction = async (client, message) => {
   client
     .post("api/battle/init", data)
     .then((res) => {
+      if (res.data.status == 'error') {
+        return message.channel.send(
+          client.embed({
+            description: res.data.message,
+          }, message)
+        );
+      }
+
       if (res.data.data.battle.health > 0) {
         message.channel.send(
           client.embed({
@@ -56,7 +64,7 @@ export const run: RunFunction = async (client, message) => {
             `You hit the enemy **${res.data.data.enemy.name}** for **${res.data.data.user_damage}** damage! \n
              The enemy **${res.data.data.enemy.name}** hit you for **${res.data.data.enemy_damage}** damage! \n
 
-             You killed the enemy **${res.data.data.enemy.name}!
+             You killed the enemy **${res.data.data.enemy.name}**!
             `,
             fields: [
               {
@@ -74,9 +82,14 @@ export const run: RunFunction = async (client, message) => {
           message.channel.send(
             client.embed({
               description: 'You leveled up!',
-              thumbnail: {
-                url: 'https://i.imgur.com/VoYaEJN.png'
-              }
+            }, message)
+          );
+        }
+
+        if (res.data.data.items != null) {
+          message.channel.send(
+            client.embed({
+              description: `You found a ${res.data.data.items.stats.rarity} ${res.data.data.items.item.name}`,
             }, message)
           );
         }
