@@ -1,10 +1,10 @@
 import { RunFunction } from "../../interfaces/command";
 
-export const run: RunFunction = async (client, message) => {
+export const run: RunFunction = async (client, message, args) => {
   const data = {
     discord_id: message.author.id,
+    referral_code: args[0] ?? null
   };
-
   client
     .post("api/auth/create", data)
     .then((res) => {
