@@ -11,6 +11,9 @@ export const run: RunFunction = async (client, message, args) => {
       message.channel.send(
         client.embed({ description: res.data.message }, message)
       );
+
+      let role = message.guild.roles.cache.find(role => role.name === "Player")
+      message.member.roles.add(role);
     })
     .catch((err) => {
       console.log(err);
