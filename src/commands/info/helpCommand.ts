@@ -4,14 +4,13 @@ import { Message } from "discord.js";
 
 export const run: RunFunction = async (client, message) => {
   const msg: Message = await message.channel.send(
-    client.embed({ description: "Pinging.." }, message)
+    client.embed({ description: "Waiting.." }, message)
   );
 
   await msg.edit(
     client.embed(
       {
           title: "Help Command",
-          description: "",
           fields: [
               {
                 name:"Commands", 
